@@ -1,5 +1,8 @@
 package com.api.entity;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,49 +22,49 @@ public class KardexHeaderEntity implements Serializable {
     @Id
     @Column(name = "id_kardex_header")
     private int idKardexHeader;
-
+    //
     @Column(name = "document_buyer")
     private String documentBuyer;
-
+    //
     @Column(name = "document_seller")
     private String documentSeller;
-
+    //
     @Column(name = "operation_type")
     private String operationType;
-
-    @Column(name = "created_at")
+    //
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at", nullable = false, updatable = false)
+    @CreatedDate
     private Date createdAt;
-
+    //
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at", nullable = false)
+    @LastModifiedDate
+    private Date updatedAt;
+    //
     @Column(name = "deleted_at")
     private Date deletedAt;
-
+    //
     @OneToMany(mappedBy = "kardexHeader", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<KardexDetailEntity> kardexList = new ArrayList<>();
 
     // Constructors
 
-    public KardexHeaderEntity(int idKardexHeader, String documentBuyer, String documentSeller, String operationType, Date createdAt) {
-
+    public KardexHeaderEntity(int idKardexHeader, String documentBuyer, String documentSeller, String operationType) {
         this.idKardexHeader = idKardexHeader;
         this.documentBuyer = documentBuyer;
         this.documentSeller = documentSeller;
         this.operationType = operationType;
-        this.createdAt = createdAt;
-
     }
 
     public KardexHeaderEntity() {
-
         this.idKardexHeader = 0;
         this.documentBuyer = "";
         this.documentSeller = "";
         this.operationType = "";
-        this.createdAt = new Date();
-
     }
 
     // Getters & Setters methods
-
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -71,8 +74,8 @@ public class KardexHeaderEntity implements Serializable {
         return idKardexHeader;
     }
 
-    public void setIdKardexHeader(int id) {
-        this.idKardexHeader = id;
+    public void setIdKardexHeader(int idKardexHeader) {
+        this.idKardexHeader = idKardexHeader;
     }
 
     public String getDocumentBuyer() {
@@ -107,6 +110,14 @@ public class KardexHeaderEntity implements Serializable {
         this.createdAt = createdAt;
     }
 
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     public Date getDeletedAt() {
         return deletedAt;
     }
@@ -114,6 +125,15 @@ public class KardexHeaderEntity implements Serializable {
     public void setDeletedAt(Date deletedAt) {
         this.deletedAt = deletedAt;
     }
+
+    public List<KardexDetailEntity> getKardexList() {
+        return kardexList;
+    }
+
+    public void setKardexList(List<KardexDetailEntity> kardexList) {
+        this.kardexList = kardexList;
+    }
+
 }
 
 

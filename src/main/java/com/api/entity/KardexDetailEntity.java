@@ -17,14 +17,14 @@ public class KardexDetailEntity implements Serializable {
     @Id
     @Column(name = "id")
     private int id;
-
+    //
     @Column(name = "quantity")
     private int quantity;
-
+    //
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_product")
     private ProductEntity product;
-
+    //
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_kardex_header")
     private KardexHeaderEntity kardexHeader;
@@ -38,9 +38,7 @@ public class KardexDetailEntity implements Serializable {
         this.kardexHeader = kardexHeader;
     }
 
-
     // Getters & Setters methods
-
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -77,6 +75,7 @@ public class KardexDetailEntity implements Serializable {
     public void setKardexHeader(KardexHeaderEntity kardexHeader) {
         this.kardexHeader = kardexHeader;
     }
+
 }
 
 

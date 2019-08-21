@@ -19,25 +19,44 @@ public class ProductEntity implements Serializable {
     @Id
     @Column(name = "id_product")
     private int idProduct;
-
+    //
     @Column(name = "name")
     private String name;
-
+    //
     @Column(name = "description")
     private String description;
-
+    //
     @Column(name = "price")
     private int price;
-
+    //
     @Column(name = "stock")
     private int stock;
-
+    //
     @Column(name = "deleted_at")
     private Date deletedAt;
-
+    //
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<KardexDetailEntity> kardexList = new ArrayList<>();
+
     // Constructors
+
+    public ProductEntity(int idProduct, String name, String description, int price, int stock, List<KardexDetailEntity> kardexList) {
+        this.idProduct = idProduct;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.stock = stock;
+        this.kardexList = kardexList;
+    }
+
+    public ProductEntity() {
+        this.idProduct = 0;
+        this.name = "";
+        this.description = "";
+        this.price = 0;
+        this.stock = 0;
+        this.kardexList = null;
+    }
 
     // Getters & Setters methods
 
@@ -92,6 +111,15 @@ public class ProductEntity implements Serializable {
     public void setDeletedAt(Date deletedAt) {
         this.deletedAt = deletedAt;
     }
+
+    public List<KardexDetailEntity> getKardexList() {
+        return kardexList;
+    }
+
+    public void setKardexList(List<KardexDetailEntity> kardexList) {
+        this.kardexList = kardexList;
+    }
+
 }
 
 
