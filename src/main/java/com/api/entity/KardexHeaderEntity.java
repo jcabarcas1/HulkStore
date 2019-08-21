@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Table(name = "kardex")
+@Table(name = "kardex_headers")
 @Entity
-public class KardexEntity implements Serializable {
+public class KardexHeaderEntity implements Serializable {
 
     // Constants
 
@@ -17,119 +17,103 @@ public class KardexEntity implements Serializable {
     // Attributes
 
     @Id
-    @Column(name = "id_kardex")
-    private int idOperationType;
+    @Column(name = "id_kardex_header")
+    private int idKardexHeader;
+
     @Column(name = "document_buyer")
     private String documentBuyer;
+
     @Column(name = "document_seller")
     private String documentSeller;
+
+    @Column(name = "operation_type")
+    private String operationType;
+
     @Column(name = "created_at")
     private Date createdAt;
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "kardexList")
-    private List<ProductEntity> kardexList = new ArrayList<>();
+
     @Column(name = "deleted_at")
     private Date deletedAt;
 
+    @OneToMany(mappedBy = "kardexHeader", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<KardexDetailEntity> kardexList = new ArrayList<>();
+
     // Constructors
 
-    public KardexEntity(int idOperationType, String documentBuyer, String documentSeller, Date createdAt) {
+    public KardexHeaderEntity(int idKardexHeader, String documentBuyer, String documentSeller, String operationType, Date createdAt) {
 
-        this.idOperationType = idOperationType;
+        this.idKardexHeader = idKardexHeader;
         this.documentBuyer = documentBuyer;
         this.documentSeller = documentSeller;
+        this.operationType = operationType;
         this.createdAt = createdAt;
 
     }
 
-    public KardexEntity() {
+    public KardexHeaderEntity() {
 
-        this.idOperationType = 0;
+        this.idKardexHeader = 0;
         this.documentBuyer = "";
         this.documentSeller = "";
+        this.operationType = "";
         this.createdAt = new Date();
 
     }
 
     // Getters & Setters methods
 
-    public int getIdOperationType() {
 
-        return idOperationType;
-
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
-    public void setIdOperationType(int idOperationType) {
+    public int getIdKardexHeader() {
+        return idKardexHeader;
+    }
 
-        this.idOperationType = idOperationType;
-
+    public void setIdKardexHeader(int id) {
+        this.idKardexHeader = id;
     }
 
     public String getDocumentBuyer() {
-
         return documentBuyer;
-
     }
 
     public void setDocumentBuyer(String documentBuyer) {
-
         this.documentBuyer = documentBuyer;
-
     }
 
     public String getDocumentSeller() {
-
         return documentSeller;
-
     }
 
     public void setDocumentSeller(String documentSeller) {
-
         this.documentSeller = documentSeller;
+    }
 
+    public String getOperationType() {
+        return operationType;
+    }
+
+    public void setOperationType(String operationType) {
+        this.operationType = operationType;
     }
 
     public Date getCreatedAt() {
-
         return createdAt;
-
     }
 
     public void setCreatedAt(Date createdAt) {
-
         this.createdAt = createdAt;
-
-    }
-
-    public List<ProductEntity> getKardexList() {
-
-        return kardexList;
-
-    }
-
-    public void setKardexList(List<ProductEntity> kardexList) {
-
-        this.kardexList = kardexList;
-
     }
 
     public Date getDeletedAt() {
-
         return deletedAt;
-
     }
 
     public void setDeletedAt(Date deletedAt) {
-
         this.deletedAt = deletedAt;
-
     }
-
-    public static long getSerialVersionUID() {
-
-        return serialVersionUID;
-
-    }
-
 }
 
 

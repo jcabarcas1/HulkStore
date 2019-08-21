@@ -19,48 +19,31 @@ public class ProductEntity implements Serializable {
     @Id
     @Column(name = "id_product")
     private int idProduct;
+
     @Column(name = "name")
     private String name;
+
     @Column(name = "description")
     private String description;
+
     @Column(name = "price")
     private int price;
+
     @Column(name = "stock")
     private int stock;
+
     @Column(name = "deleted_at")
     private Date deletedAt;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "kardex_detail",
-            joinColumns = @JoinColumn(name = "id_product"),
-            inverseJoinColumns = @JoinColumn(name = "id_kardex")
-    )
-    public List<KardexEntity> kardexList = new ArrayList<>();
-
-
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<KardexDetailEntity> kardexList = new ArrayList<>();
     // Constructors
 
-    public ProductEntity(int idProduct, String name, String description, int price, int stock) {
-
-        this.idProduct = idProduct;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.stock = stock;
-
-    }
-
-    public ProductEntity() {
-
-        this.idProduct = 0;
-        this.name = "";
-        this.description = "";
-        this.stock = 0;
-        this.price = 0;
-
-    }
-
     // Getters & Setters methods
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public int getIdProduct() {
         return idProduct;
@@ -102,18 +85,6 @@ public class ProductEntity implements Serializable {
         this.stock = stock;
     }
 
-    public List<KardexEntity> getKardexList() {
-
-        return kardexList;
-
-    }
-
-    public void setKardexList(List<KardexEntity> kardexList) {
-
-        this.kardexList = kardexList;
-
-    }
-
     public Date getDeletedAt() {
         return deletedAt;
     }
@@ -121,13 +92,6 @@ public class ProductEntity implements Serializable {
     public void setDeletedAt(Date deletedAt) {
         this.deletedAt = deletedAt;
     }
-
-    public static long getSerialVersionUID() {
-
-        return serialVersionUID;
-
-    }
-
 }
 
 
