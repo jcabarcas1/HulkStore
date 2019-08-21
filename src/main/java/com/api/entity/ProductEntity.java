@@ -1,11 +1,10 @@
 package com.api.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.List;
+import javax.persistence.*;
 
 @Table(name = "products")
 @Entity
@@ -30,6 +29,14 @@ public class ProductEntity implements Serializable {
     private int stock;
     @Column(name = "deleted_at")
     private Date deletedAt;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "kardex_detail",
+            joinColumns = @JoinColumn(name = "id_product"),
+            inverseJoinColumns = @JoinColumn(name = "id_kardex")
+    )
+    public List<KardexEntity> kardexList = new ArrayList<>();
+
 
     // Constructors
 
@@ -93,6 +100,18 @@ public class ProductEntity implements Serializable {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public List<KardexEntity> getKardexList() {
+
+        return kardexList;
+
+    }
+
+    public void setKardexList(List<KardexEntity> kardexList) {
+
+        this.kardexList = kardexList;
+
     }
 
     public Date getDeletedAt() {
