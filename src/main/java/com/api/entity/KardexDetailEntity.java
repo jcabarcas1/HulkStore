@@ -15,6 +15,7 @@ public class KardexDetailEntity implements Serializable {
     // Attributes
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
     //
@@ -36,6 +37,12 @@ public class KardexDetailEntity implements Serializable {
         this.quantity = quantity;
         this.product = product;
         this.kardexHeader = kardexHeader;
+    }
+
+    public KardexDetailEntity() {
+        this.quantity = 0;
+        this.product = new ProductEntity();
+        this.kardexHeader = new KardexHeaderEntity();
     }
 
     // Getters & Setters methods

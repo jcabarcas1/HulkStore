@@ -17,6 +17,7 @@ public class ProductEntity implements Serializable {
     // Attributes
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_product")
     private int idProduct;
     //
@@ -55,7 +56,7 @@ public class ProductEntity implements Serializable {
         this.description = "";
         this.price = 0;
         this.stock = 0;
-        this.kardexList = null;
+        this.kardexList = new ArrayList<>();
     }
 
     // Getters & Setters methods

@@ -1,6 +1,7 @@
 package com.api.model;
 
 import com.api.entity.KardexDetailEntity;
+import com.api.entity.ProductEntity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -28,6 +29,15 @@ public class ProductModel implements Serializable {
         this.price = price;
         this.stock = stock;
         this.kardexList = kardexList;
+    }
+
+    public ProductModel(ProductEntity productEntity) {
+        this.idProduct = productEntity.getIdProduct();
+        this.name = productEntity.getName();
+        this.description = productEntity.getDescription();
+        this.price = productEntity.getPrice();
+        this.stock = productEntity.getStock();
+        this.kardexList = productEntity.getKardexList();
     }
 
     public ProductModel() {

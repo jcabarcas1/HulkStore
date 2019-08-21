@@ -1,5 +1,7 @@
 package com.api.entity;
 
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -20,6 +22,7 @@ public class KardexHeaderEntity implements Serializable {
     // Attributes
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_kardex_header")
     private int idKardexHeader;
     //
@@ -33,14 +36,10 @@ public class KardexHeaderEntity implements Serializable {
     private String operationType;
     //
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "created_at", insertable = false, updatable = false,
+            columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP")
     @CreatedDate
     private Date createdAt;
-    //
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at", nullable = false)
-    @LastModifiedDate
-    private Date updatedAt;
     //
     @Column(name = "deleted_at")
     private Date deletedAt;
@@ -108,14 +107,6 @@ public class KardexHeaderEntity implements Serializable {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
     public Date getDeletedAt() {
