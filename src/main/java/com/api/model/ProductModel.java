@@ -1,9 +1,13 @@
 package com.api.model;
 
-import com.api.entity.ProductEntity;
-import java.util.Date;
+import com.api.entity.KardexDetailEntity;
 
-public class ProductModel {
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+public class ProductModel implements Serializable {
 
     // Attributes
 
@@ -13,37 +17,26 @@ public class ProductModel {
     private int price;
     private int stock;
     private Date deletedAt;
+    private List<KardexDetailEntity> kardexList = new ArrayList<>();
 
     // Constructors
 
-    public ProductModel() {
-
-        this.idProduct = 0;
-        this.name = "";
-        this.description = "";
-        this.stock = 0;
-        this.price = 0;
-
-    }
-
-    public ProductModel(int idProduct, String name, String description, int price, String preparationTime, String type, int stock) {
-
+    public ProductModel(int idProduct, String name, String description, int price, int stock, List<KardexDetailEntity> kardexList) {
         this.idProduct = idProduct;
         this.name = name;
         this.description = description;
         this.price = price;
         this.stock = stock;
-
+        this.kardexList = kardexList;
     }
 
-    public ProductModel(ProductEntity product) {
-
-        this.idProduct = product.getIdProduct();
-        this.name = product.getName();
-        this.description = product.getDescription();
-        this.price = product.getPrice();
-        this.stock = product.getStock();
-
+    public ProductModel() {
+        this.idProduct = 0;
+        this.name = "";
+        this.description = "";
+        this.price = 0;
+        this.stock = 0;
+        this.kardexList = null;
     }
 
     // Getters & Setters methods
@@ -96,4 +89,14 @@ public class ProductModel {
         this.deletedAt = deletedAt;
     }
 
+    public List<KardexDetailEntity> getKardexList() {
+        return kardexList;
+    }
+
+    public void setKardexList(List<KardexDetailEntity> kardexList) {
+        this.kardexList = kardexList;
+    }
+
 }
+
+
