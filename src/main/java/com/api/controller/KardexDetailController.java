@@ -27,33 +27,5 @@ public class KardexDetailController {
         return service.storeKardexDetail(kardexDetailEntity);
 
     }
-/*
-    @PostMapping()
-    public ResponseEntity<ResponseHTTP> updateProduct(@RequestBody @Valid ProductEntity product) {
 
-        return service.updateProduct(product);
-
-    }
-
-    @GetMapping("/{id_product}")
-    public ResponseEntity<ResponseHTTP> getByIdProduct(@PathVariable("id_product") int idProduct) {
-
-        return service.getFindByIdProduct(idProduct);
-
-    }
-
-    @GetMapping()
-    public ResponseEntity<ResponseHTTP> getAllProduct() {
-
-        return service.getAllProducts();
-
-    }
-
-    @DeleteMapping()
-    public ResponseEntity<ResponseHTTP> deleteProduct(@RequestBody @Valid ProductEntity product) {
-
-        return service.deleteUser(product);
-
-    }
-*/
 }
