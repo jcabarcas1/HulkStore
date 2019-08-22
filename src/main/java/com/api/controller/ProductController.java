@@ -44,13 +44,6 @@ public class ProductController {
 
     }
 
-    @GetMapping("/{id_product}")
-    public ResponseEntity<ResponseHTTP> getByIdProduct(@PathVariable("id_product") int idProduct) {
-
-        return service.getFindByIdProduct(idProduct);
-
-    }
-
     @GetMapping()
     public ResponseEntity<ResponseHTTP> getAllProducts() {
 

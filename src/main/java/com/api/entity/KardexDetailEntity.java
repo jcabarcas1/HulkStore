@@ -2,18 +2,15 @@ package com.api.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
 @Table(name = "kardex_details")
 @Entity
 public class KardexDetailEntity implements Serializable {
 
     // Constants
-
     private static final long serialVersionUID = 6786812770459917642L;
 
     // Attributes
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -31,56 +28,76 @@ public class KardexDetailEntity implements Serializable {
     private KardexHeaderEntity kardexHeader;
 
     // Constructors
-
     public KardexDetailEntity(int id, int quantity, ProductEntity product, KardexHeaderEntity kardexHeader) {
+
         this.id = id;
         this.quantity = quantity;
         this.product = product;
         this.kardexHeader = kardexHeader;
+
     }
 
     public KardexDetailEntity() {
+
         this.quantity = 0;
         this.product = new ProductEntity();
         this.kardexHeader = new KardexHeaderEntity();
+
     }
 
     // Getters & Setters methods
-
     public static long getSerialVersionUID() {
+
         return serialVersionUID;
+
     }
 
     public int getId() {
+
         return id;
+
     }
 
     public void setId(int id) {
+
         this.id = id;
+
     }
 
     public int getQuantity() {
+
         return quantity;
+
     }
 
     public void setQuantity(int quantity) {
+
         this.quantity = quantity;
+
     }
 
     public ProductEntity getProduct() {
+
         return product;
+
     }
 
     public void setProduct(ProductEntity product) {
+
         this.product = product;
+
     }
 
     public KardexHeaderEntity getKardexHeader() {
+
         return kardexHeader;
+
     }
 
     public void setKardexHeader(KardexHeaderEntity kardexHeader) {
+
         this.kardexHeader = kardexHeader;
+
     }
 
 }
