@@ -3,35 +3,83 @@
     <div class="col-md-3 register-left">
       <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
       <h3>Bienvenido</h3>
-      <p>Aquí puedes agregar un nuevo producto.</p>
+      <p>Aquí puedes comprar o vender productos de la tienda.</p>
     </div>
     <div class="col-md-9 register-right">
+      <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+             aria-selected="true">Comprar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+             aria-selected="false">Vender</a>
+        </li>
+      </ul>
+
+      <!-- Compras -->
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-          <h3 class="register-heading">Registrar producto</h3>
-          <form class="row register-form">
-            <div class="col-md-6">
+          <h3 class="register-heading">Compras (Agregar a stock)</h3>
+          <div class="row register-form">
+            <div class="col-md-6 col-sm-12">
               <div class="form-group">
-                <label for="name">Nombre *</label>
-                <input type="text" id="name" class="form-control" value="" />
+                <label for="product">Producto *</label>
+                <select id="product" class="form-control">
+                  <option class="hidden" selected disabled>Porfavor selecciona un producto</option>
+                  <option>Producto 1</option>
+                  <option>Producto 2</option>
+                  <option>Producto 3</option>
+                </select>
               </div>
               <div class="form-group">
-                <label for="price">Precio *</label>
-                <input type="number" id="price" class="form-control" value="" />
-              </div>
-              <div class="form-group">
-                <label for="stock">Stock *</label>
-                <input type="number" id="stock" class="form-control" value="" />
+                <label for="quantity">Cantidad *</label>
+                <input type="number" class="form-control" id="quantity" value=""/>
               </div>
             </div>
-            <div class="col-md-6">
+
+            <div class="col-md-6 col-sm-12">
               <div class="form-group">
-                <label for="description">Descripción</label>
-                <textarea class="form-control" id="description" rows="8" placeholder="Last Name *" > </textarea>
+                <label for="buyer_doc">Documento de identificación *</label>
+                <input type="text" class="form-control" id="buyer_doc" value=""/>
               </div>
-              <input type="submit" class="btnRegister"  value="Register"/>
+              <input type="submit" class="btnRegister" value="Enviar"/>
             </div>
-          </form>
+          </div>
+        </div>
+
+        <!-- Ventas -->
+        <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+          <h3 class="register-heading">Ventas</h3>
+          <div class="row register-form">
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+                <label for="product_sell">Producto *</label>
+                <select id="product_sell" class="form-control">
+                  <option class="hidden" selected disabled>Porfavor selecciona un producto</option>
+                  <option>Producto 1</option>
+                  <option>Producto 2</option>
+                  <option>Producto 3</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="quantity_sell">Cantidad *</label>
+                <input type="number" class="form-control" id="quantity_sell" value=""/>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+                <label for="buyer_doc_sell">Documento de identificación (Vendedor) *</label>
+                <input type="text" class="form-control" id="buyer_doc_sell" value=""/>
+              </div>
+              <div class="form-group">
+                <label for="seller_doc_sell">Documento de identificación (Comprador) *</label>
+                <input type="text" class="form-control" id="seller_doc_sell" value=""/>
+              </div>
+              <input type="submit" class="btnRegister" value="Enviar"/>
+            </div>
+          </div>
         </div>
       </div>
     </div>

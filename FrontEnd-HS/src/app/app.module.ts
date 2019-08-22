@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductComponent } from './components/product/product.component';
 import { KardexComponent } from './components/kardex/kardex.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductComponent,
-    KardexComponent
+    KardexComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
