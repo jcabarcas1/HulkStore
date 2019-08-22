@@ -9,27 +9,29 @@
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
           <h3 class="register-heading">Registrar producto</h3>
-          <form class="row register-form">
+          <form [formGroup]="productForm" (ngSubmit)="saveProduct()" class="row register-form">
             <div class="col-md-6">
               <div class="form-group">
                 <label for="name">Nombre *</label>
-                <input type="text" id="name" class="form-control" value="" />
+                <input type="text" id="name" class="form-control" value="" formControlName="name"/>
               </div>
               <div class="form-group">
                 <label for="price">Precio *</label>
-                <input type="number" id="price" class="form-control" value="" />
+                <input type="number" id="price" class="form-control" value="" formControlName="price" />
               </div>
               <div class="form-group">
                 <label for="stock">Stock *</label>
-                <input type="number" id="stock" class="form-control" value="" />
+                <input type="number" id="stock" class="form-control" value="" formControlName="stock"/>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="description">Descripción</label>
-                <textarea class="form-control" id="description" rows="8" placeholder="Last Name *" > </textarea>
+                <textarea class="form-control" id="description" rows="8"
+                          formControlName="description">
+                </textarea>
               </div>
-              <input type="submit" class="btnRegister"  value="Enviar"/>
+              <input type="submit" [disabled]="!productForm.valid" class="btn btn-primary" value="Enviar"/>
             </div>
           </form>
         </div>

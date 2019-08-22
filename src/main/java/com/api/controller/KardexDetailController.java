@@ -22,7 +22,7 @@ public class KardexDetailController {
     public KardexDetailService service;
 
     @PutMapping()
-    public ResponseEntity<ResponseHTTP> storeKardexDetail(@RequestBody @Valid KardexDetailEntity kardexDetailEntity) {
+    public ResponseEntity<ResponseHTTP> buyProduct(@RequestBody @Valid KardexDetailEntity kardexDetailEntity) {
 
         return service.storeKardexDetail(kardexDetailEntity);
 
