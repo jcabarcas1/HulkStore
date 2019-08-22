@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product',
@@ -24,8 +25,26 @@ export class ProductComponent implements OnInit {
 
   saveProduct() {
     this.http.post(environment.apiUrl + '/products', this.productForm.value).subscribe(
-      (success) => alert('Producto agregado!'),
-      (err) => console.log(err)
+      (success) => {
+        this.productForm.reset();
+        Swal.fire(
+          {
+            title: 'Muy bien!',
+            // @ts-ignore
+            text: success.message,
+            type: 'success'
+          }
+        );
+      },
+      (err) => {
+        Swal.fire(
+          {
+            title: 'Error!',
+            text: err.error.message,
+            type: 'error'
+          }
+        );
+      }
     );
   }
 }

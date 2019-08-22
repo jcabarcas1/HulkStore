@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import com.api.entity.KardexDetailEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.api.entity.ProductEntity;
@@ -28,9 +29,18 @@ public class ProductController {
     }
 
     @PutMapping("/buy")
-    public ResponseEntity<ResponseHTTP> buyProduct(@RequestBody @Valid KardexDetailEntity kardexDetailEntity) {
+    public ResponseEntity<ResponseHTTP> buyProduct(@RequestBody @Valid KardexDetailEntity kardexDetailEntity)
+            throws Exception{
 
         return service.buyProduct(kardexDetailEntity);
+
+    }
+
+    @PutMapping("/sell")
+    public ResponseEntity<ResponseHTTP> sellProduct(@RequestBody @Valid KardexDetailEntity kardexDetailEntity)
+            throws Exception{
+
+        return service.sellProduct(kardexDetailEntity);
 
     }
 
@@ -42,16 +52,19 @@ public class ProductController {
     }
 
     @GetMapping()
-    public ResponseEntity<ResponseHTTP> getAllProduct() {
+    public ResponseEntity<ResponseHTTP> getAllProducts() {
 
         return service.getAllProducts();
 
     }
 
-    @DeleteMapping()
-    public ResponseEntity<ResponseHTTP> deleteProduct(@RequestBody @Valid ProductEntity product) {
+    @ExceptionHandler({ Exception.class })
+    private ResponseEntity handleException(Exception e) {
 
-        return service.deleteUser(product);
+        ResponseHTTP response = new ResponseHTTP();
+        response.setMessage(e.getMessage());
+        response.setDeveloperMessage(e.getLocalizedMessage());
+        return new ResponseEntity<ResponseHTTP>(response, response.getHttpHeaders(), HttpStatus.BAD_REQUEST);
 
     }
 

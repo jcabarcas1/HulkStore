@@ -15,12 +15,14 @@ public class ProductConverter {
     }
 
     public List<ProductModel> productList(List<ProductEntity> productsEntity){
+
         List<ProductModel> products = new ArrayList<ProductModel>();
         for (ProductEntity productEntity : productsEntity) {
             ProductModel product = new ProductModel(productEntity);
             products.add(product);
         }
         return products;
+
     }
 
 }

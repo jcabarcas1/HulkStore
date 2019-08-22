@@ -37,9 +37,9 @@
             </div>
 
             <div class="col-md-6 col-sm-12">
-              <div class="form-group">
+              <div class="form-group" formGroupName="kardexHeader">
                 <label for="buyer_doc">Documento de identificación *</label>
-                <input type="text" class="form-control" id="buyer_doc" value="" formControlName="documentBuyer"/>
+                <input type="text" class="form-control" id="buyer_doc" value="" formControlName="documentSeller"/>
               </div>
               <input type="submit" class="btnRegister" value="Enviar"/>
             </div>
@@ -48,36 +48,36 @@
 
         <!-- Ventas -->
         <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
           <h3 class="register-heading">Ventas</h3>
-          <div class="row register-form">
+          <form [formGroup]="sellForm" (ngSubmit)="sell()"  class="row register-form">
             <div class="col-md-6 col-sm-12">
-              <div class="form-group">
+              <div class="form-group" formGroupName="product">
                 <label for="product_sell">Producto *</label>
-                <select id="product_sell" class="form-control">
+                <select id="product_sell" class="form-control" formControlName="idProduct">
                   <option class="hidden" selected disabled>Porfavor selecciona un producto</option>
-                  <option>Producto 1</option>
-                  <option>Producto 2</option>
-                  <option>Producto 3</option>
+                  <option value="{{product.idProduct}}" *ngFor="let product of listProducts">{{product.name}}</option>
                 </select>
               </div>
               <div class="form-group">
                 <label for="quantity_sell">Cantidad *</label>
-                <input type="number" class="form-control" id="quantity_sell" value=""/>
+                <input type="number" class="form-control" id="quantity_sell" value="" formControlName="quantity"/>
               </div>
             </div>
 
             <div class="col-md-6 col-sm-12">
-              <div class="form-group">
+              <div class="form-group" formGroupName="kardexHeader">
                 <label for="buyer_doc_sell">Documento de identificación (Vendedor) *</label>
-                <input type="text" class="form-control" id="buyer_doc_sell" value=""/>
+                <input type="text" class="form-control" id="buyer_doc_sell"  formControlName="documentSeller" value=""/>
               </div>
-              <div class="form-group">
+              <div class="form-group" formGroupName="kardexHeader">
                 <label for="seller_doc_sell">Documento de identificación (Comprador) *</label>
-                <input type="text" class="form-control" id="seller_doc_sell" value=""/>
+                <input type="text" class="form-control" id="seller_doc_sell" formControlName="documentBuyer" value=""/>
               </div>
               <input type="submit" class="btnRegister" value="Enviar"/>
             </div>
-          </div>
+          </form>
+
         </div>
       </div>
     </div>

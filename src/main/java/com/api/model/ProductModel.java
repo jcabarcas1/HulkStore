@@ -37,7 +37,6 @@ public class ProductModel implements Serializable {
         this.description = productEntity.getDescription();
         this.price = productEntity.getPrice();
         this.stock = productEntity.getStock();
-        this.kardexList = productEntity.getKardexList();
     }
 
     public ProductModel() {
