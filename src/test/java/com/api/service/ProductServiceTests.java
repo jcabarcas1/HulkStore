@@ -135,7 +135,7 @@ public class ProductServiceTests {
 	}
 
 	@Test(expected = Exception.class)
-	public void testSellProductWithoutStockData() throws Exception {
+	public void testSellProductWithoutStockAvailable() throws Exception {
 
 		KardexDetailEntity kardexDetailEntity = new KardexDetailEntity();
 		kardexDetailEntity.setProduct(new ProductEntity(1, "My Product", null, 0, 0, new ArrayList<>()));
