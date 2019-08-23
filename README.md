@@ -1,2 +1,3 @@
 # HulkStore
-Technical Test Java Todo1
+
+Este proyecto utiliza Gradle 5.5.1
