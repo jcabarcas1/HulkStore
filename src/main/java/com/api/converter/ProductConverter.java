@@ -10,8 +10,10 @@ import com.api.model.ProductModel;
 public class ProductConverter {
 
     public ProductModel convertProduct(ProductEntity productEntity) {
+
         ProductModel product = new ProductModel(productEntity);
         return product;
+
     }
 
     public List<ProductModel> productList(List<ProductEntity> productsEntity){
