@@ -21,7 +21,6 @@ import javax.validation.Valid;
 @Transactional(rollbackFor = Exception.class)
 public class ProductService {
 
-
     @Autowired
     @Qualifier("product_repository")
     public ProductRepository repository;
@@ -41,7 +40,7 @@ public class ProductService {
     public ResponseEntity<ResponseHTTP> storeProduct(ProductEntity product) {
 
         ResponseHTTP response = new ResponseHTTP();
-        repository.save(product);
+        response.setData(repository.save(product));
         response.setMessage("Producto creado exitosamente.");
         return new ResponseEntity<ResponseHTTP>(response, response.getHttpHeaders(), HttpStatus.CREATED);
 

@@ -19,16 +19,16 @@ public class ProductEntity implements Serializable {
     @Column(name = "id_product")
     private int idProduct;
     //
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
     //
     @Column(name = "description")
     private String description;
     //
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     private int price;
     //
-    @Column(name = "stock")
+    @Column(name = "stock", nullable = false)
     private int stock;
     //
     @Column(name = "deleted_at")
@@ -51,7 +51,6 @@ public class ProductEntity implements Serializable {
 
     public ProductEntity() {
 
-        this.idProduct = 0;
         this.name = "";
         this.description = "";
         this.price = 0;
@@ -149,6 +148,23 @@ public class ProductEntity implements Serializable {
 
         this.kardexList = kardexList;
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ProductEntity product = (ProductEntity) o;
+        boolean result = idProduct == product.getIdProduct() &&
+                price == product.getPrice() &&
+                stock == product.getStock() &&
+                name.equals(product.name) &&
+                description.equals(product.description);
+        return result;
     }
 
 }

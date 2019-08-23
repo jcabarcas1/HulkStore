@@ -26,6 +26,7 @@ export class ProductComponent implements OnInit {
   saveProduct() {
     this.http.post(environment.apiUrl + '/products', this.productForm.value).subscribe(
       (success) => {
+        console.log(success);
         this.productForm.reset();
         Swal.fire(
           {
