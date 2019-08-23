@@ -87,9 +87,30 @@ public class ProductServiceTests {
 		when(repository.findByIdProduct(kardexDetailEntity.getProduct().getIdProduct()))
 				.thenReturn(kardexDetailEntity.getProduct());
 		when(repository.save(kardexDetailEntity.getProduct()))
-				.thenReturn(null);
+				.thenReturn(kardexDetailEntity.getProduct());
 
 		assert(service.buyProduct(kardexDetailEntity).getStatusCode() == HttpStatus.OK);
+
+	}
+
+	@Test(expected = Exception.class)
+	public void testBuyProductNotExist() throws Exception {
+
+		KardexDetailEntity kardexDetailEntity = new KardexDetailEntity();
+		kardexDetailEntity.setProduct(new ProductEntity(1, "My Product", null, 0, 0, new ArrayList<>()));
+		kardexDetailEntity.setKardexHeader(new KardexHeaderEntity());
+		kardexDetailEntity.setQuantity(5);
+
+		when(kardexHeaderRepository.save(kardexDetailEntity.getKardexHeader()))
+				.thenReturn(kardexDetailEntity.getKardexHeader());
+		when(kardexDetailRepository.save(kardexDetailEntity))
+				.thenReturn(kardexDetailEntity);
+		when(repository.findByIdProduct(kardexDetailEntity.getProduct().getIdProduct()))
+				.thenReturn(null);
+		when(repository.save(kardexDetailEntity.getProduct()))
+				.thenReturn(kardexDetailEntity.getProduct());
+
+		service.buyProduct(kardexDetailEntity);
 
 	}
 
@@ -109,13 +130,34 @@ public class ProductServiceTests {
 		when(repository.findByIdProduct(kardexDetailEntity.getProduct().getIdProduct()))
 				.thenReturn(kardexDetailEntity.getProduct());
 		when(repository.save(kardexDetailEntity.getProduct()))
-				.thenReturn(null);
+				.thenReturn(kardexDetailEntity.getProduct());
 
 		assert(service.sellProduct(kardexDetailEntity).getStatusCode() == HttpStatus.OK);
 
 	}
 
-	// Sell products tests
+	@Test(expected = Exception.class)
+	public void testSellProductWithoutStockData() throws Exception {
+
+		KardexDetailEntity kardexDetailEntity = new KardexDetailEntity();
+		kardexDetailEntity.setProduct(new ProductEntity(1, "My Product", null, 0, 0, new ArrayList<>()));
+		kardexDetailEntity.setKardexHeader(new KardexHeaderEntity());
+		kardexDetailEntity.setQuantity(5);
+
+		when(kardexHeaderRepository.save(kardexDetailEntity.getKardexHeader()))
+				.thenReturn(kardexDetailEntity.getKardexHeader());
+		when(kardexDetailRepository.save(kardexDetailEntity))
+				.thenReturn(kardexDetailEntity);
+		when(repository.findByIdProduct(kardexDetailEntity.getProduct().getIdProduct()))
+				.thenReturn(kardexDetailEntity.getProduct());
+		when(repository.save(kardexDetailEntity.getProduct()))
+				.thenReturn(null);
+
+		service.sellProduct(kardexDetailEntity);
+
+	}
+
+	// Get products tests
 	@Test
 	public void testGetAllProducts() throws Exception {
 
