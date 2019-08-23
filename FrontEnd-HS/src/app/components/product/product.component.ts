@@ -14,8 +14,8 @@ export class ProductComponent implements OnInit {
   productForm = new FormGroup({
     name: new FormControl('', Validators.required),
     description: new FormControl(''),
-    stock: new FormControl(0, Validators.required),
-    price: new FormControl(0, Validators.required)
+    stock: new FormControl(0, [Validators.required, Validators.min(0)]),
+    price: new FormControl(0, [Validators.required, Validators.min(0)])
   });
 
   constructor(private http: HttpClient) { }
@@ -26,7 +26,6 @@ export class ProductComponent implements OnInit {
   saveProduct() {
     this.http.post(environment.apiUrl + '/products', this.productForm.value).subscribe(
       (success) => {
-        console.log(success);
         this.productForm.reset();
         Swal.fire(
           {

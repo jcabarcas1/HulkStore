@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class KardexComponent implements OnInit {
 
-  listProducts: any = [];
+  listProducts: any[] = [];
   buyForm = new FormGroup({
     product: new FormGroup({
       idProduct: new FormControl('', Validators.required)
@@ -19,7 +19,7 @@ export class KardexComponent implements OnInit {
     kardexHeader: new FormGroup({
       documentSeller: new FormControl('', Validators.required)
     }),
-    quantity: new FormControl('', Validators.required)
+    quantity: new FormControl('', [Validators.required, Validators.min(0)])
   });
   sellForm = new FormGroup({
     product: new FormGroup({
@@ -29,23 +29,17 @@ export class KardexComponent implements OnInit {
       documentBuyer: new FormControl('', Validators.required),
       documentSeller: new FormControl('', Validators.required)
     }),
-    quantity: new FormControl('', Validators.required)
+    quantity: new FormControl('', [Validators.required, Validators.min(0)])
   });
+  productBuy: any;
+  productSell: any;
 
   constructor(private http: HttpClient) {
   }
 
   ngOnInit() {
 
-    // Load products
-    this.http.get(environment.apiUrl + '/products').subscribe(
-      (success) => {
-        // @ts-ignore
-        this.listProducts = success.data;
-        console.log(this.listProducts);
-      },
-      (err) => console.log(err)
-    );
+    this.loadProducts();
 
   }
 
@@ -53,6 +47,7 @@ export class KardexComponent implements OnInit {
 
     this.http.put(environment.apiUrl + '/products/buy', this.buyForm.value).subscribe(
       (success) => {
+        this.loadProducts();
         this.buyForm.reset();
         Swal.fire(
           {
@@ -80,6 +75,7 @@ export class KardexComponent implements OnInit {
 
     this.http.put(environment.apiUrl + '/products/sell', this.sellForm.value).subscribe(
       (success) => {
+        this.loadProducts();
         this.sellForm.reset();
         Swal.fire(
           {
@@ -99,6 +95,41 @@ export class KardexComponent implements OnInit {
           }
         );
       }
+    );
+
+  }
+
+  changeProductBuy($event: Event) {
+
+    this.productBuy = this.listProducts.filter(
+      // @ts-ignore
+      // tslint:disable-next-line:triple-equals
+      product => product.idProduct == $event.target.value
+    )[0];
+
+  }
+
+  changeProductSell($event: Event) {
+
+    this.productSell = this.listProducts.filter(
+      // @ts-ignore
+      // tslint:disable-next-line:triple-equals
+      product => product.idProduct == $event.target.value
+    )[0];
+
+  }
+
+  loadProducts() {
+
+    // Load products
+    this.http.get(environment.apiUrl + '/products').subscribe(
+      (success) => {
+        // @ts-ignore
+        this.listProducts = success.data;
+        this.productBuy = null;
+        this.productSell = null;
+      },
+      (err) => console.log(err)
     );
 
   }
