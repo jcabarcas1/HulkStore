@@ -14,7 +14,9 @@ En la carpeta _src/main/resources/static_ se encuentran los archivos minificados
 ## Dependencias
 
    [Gradle 5.5.1](https://docs.gradle.org/5.5.1/userguide/userguide.html)    
+   
    [Java 8](https://www.java.com/es/download/)
+   
    [MariaDB 10.4.7 _(Es posible instalar un Xampp)_](https://downloads.mariadb.org/mariadb/10.4.7/)
 
 ## Configuración
