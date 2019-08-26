@@ -11,6 +11,14 @@ El código fuente del frontend se encuentra en la carpeta FrontEnd-HS y esta des
 
 En la carpeta _src/main/resources/static_ se encuentran los archivos minificados del FrontEnd.
 
+## Dependencias
+
+````
+ Gradle 5.5.1
+ Java 8
+ MySql 15.1
+````
+
 ## Configuración
 
 Para configurar el proyecto debemos ir al archivo _src/main/resources/application.properties_ (Crearlo de ser necesario)
@@ -26,16 +34,10 @@ spring.datasource.password=DB_PASSWORD
 spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 ````
 
-## Dependencias
 
-````
- Gradle 5.5.1
- Java 8
- MySql 15.1
-````
+## Ejecución del proyecto
 
 
 ## Ejecución de pruebas unitarias
 
 
-## Ejecución del proyecto
