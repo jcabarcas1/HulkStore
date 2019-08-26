@@ -8,5 +8,5 @@ import java.io.Serializable;
 
 @Repository("kardex_detail_repository")
 public interface KardexDetailRepository extends JpaRepository<KardexDetailEntity, Serializable>{
-    //
+    //  Structure created for future implementations
 }
