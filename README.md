@@ -11,6 +11,8 @@ El código fuente del frontend se encuentra en la carpeta FrontEnd-HS y esta des
 
 En la carpeta _src/main/resources/static_ se encuentran los archivos minificados del FrontEnd.
 
+_Al ejecutar el proyecto se crearan los modelos de base de datos con Hibernate._
+
 ## Dependencias
 
    [Gradle 5.5.1](https://docs.gradle.org/5.5.1/userguide/userguide.html)    
